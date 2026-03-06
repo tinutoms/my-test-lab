@@ -25,9 +25,7 @@ jobs:
         python -m pip install --upgrade pip
         
 
-    - name: Run tests (e.g., using pytest)
-      run: |
-        pip install pytest
+  
         pytest
     
     # You can add further steps here to run specific Python scripts for other tasks
