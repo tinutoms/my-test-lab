@@ -1,0 +1,35 @@
+# .github/workflows/python-app.yml
+name: Python Application CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # You can also specify 'windows-latest' or 'macos-latest'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4 # Uses a predefined action to check out your repository
+
+    - name: Set up Python environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10' # Specify the Python version to use
+        cache: 'pip' # Caches dependencies for faster subsequent runs
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt # Installs packages listed in requirements.txt
+
+    - name: Run tests (e.g., using pytest)
+      run: |
+        pip install pytest
+        pytest
+    
+    # You can add further steps here to run specific Python scripts for other tasks
+    - name: Run a custom Python script
+      run: python my_analysis_script.py
